@@ -1,28 +1,27 @@
 const express = require('express');
-
-// required config file
-const dbConfig = require('./config/database.js');
-
-// creating express app
+const dbconnect = require('./config/database.js');
+require("dotenv").config();
+// create express app
 const app = express();
 
-// parsing the requests of content
-app.use(express.urlencoded({
-    extended: true
-}));
+//Connect to DB
+dbconnect();
 
-// parsing requests of content type - json
-app.use(express.json());
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }))
 
-// defining a simple root statement
+// parse requests of content-type - application/json
+app.use(express.json())     
+
+// define a simple route
 app.get('/', (req, res) => {
-    res.send("<h1>Hello! Welcome to employee payroll app.</h1>");
+    res.json({"message": "Welcome to EmployeePayRoll application "});
 });
 
-require('./app/routers/employeeInfoRoutes.js')(app);
-dbConfig().then(() => {
-    app.listen(3000, function () {
-        console.log("Server is up and running on port 3000")
+// Require Notes routes
+require('./app/routers/employee')(app);
 
-    });
+// listen for requests
+app.listen(process.env.SERVER_PORT, () => {
+    console.log("Server is listening on port "+process.env.SERVER_PORT);
 });
