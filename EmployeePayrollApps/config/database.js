@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 require("dotenv").config();
-/*
- * function to connect mongoose database 
- * @returns connection
- */
+
+//  function to connect mongoose database 
+ 
 function dbconnect(){
 
     mongoose.promise;
@@ -18,6 +17,6 @@ function dbconnect(){
     .on('error', (error)=> {
         console.log("Eroor found",error)
     });
-}
+} 
 
 module.exports=dbconnect;
