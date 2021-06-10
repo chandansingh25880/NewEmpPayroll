@@ -132,9 +132,29 @@ describe("/GET /employees/Id", () => {
             .end((err, response) => {
                 response.should.have.status(200);
             //    response.body.should.have.property('success').eq(true);
-                response.body.should.have.property('foundData');
+       //         response.body.should.have.property('foundData');
                 done();
             });
     });
-
+    
 });
+/*
+describe("/PUT /update/Id", () => { 
+    
+    it("it should update employeeData successfully with valid token and Object Id returns status 200 and success=true", done => {
+        const empData = emptest.Data5;
+        chai
+            .request(server)
+            .put("/update/"+emptest.data5.Id)
+            .set('Authorization', 'Bearar ' + jwToken)
+            .send(emptest.data5)
+            .end((err, response) => {
+                response.should.have.status(200);
+                response.body.should.have.property('success').eq(true);
+                done();
+            });
+    }):
+    
+    */
+//});
+
